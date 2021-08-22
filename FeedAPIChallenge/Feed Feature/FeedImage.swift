@@ -17,3 +17,20 @@ public struct FeedImage: Hashable {
 		self.url = url
 	}
 }
+
+extension FeedImage: Codable {
+	fileprivate enum CodingKeys: String, CodingKey {
+		case id = "image_id"
+		case description = "image_desc"
+		case location = "image_loc"
+		case url = "image_url"
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		id = try! container.decode(UUID.self, forKey: .id)
+		description = try? container.decode(String.self, forKey: .description)
+		location = try? container.decode(String.self, forKey: .location)
+		url = try! container.decode(URL.self, forKey: .url)
+	}
+}
