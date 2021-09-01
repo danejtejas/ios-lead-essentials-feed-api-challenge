@@ -34,7 +34,6 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
 		XCTAssertEqual(client.requestedURLs, [url, url])
 	}
 
-//
 	func test_load_deliversConnectivityErrorOnClientError() {
 		let (sut, client) = makeSUT()
 
@@ -44,7 +43,6 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
 		})
 	}
 
-//
 	func test_load_deliversInvalidDataErrorOnNon200HTTPResponse() {
 		let (sut, client) = makeSUT()
 
@@ -68,7 +66,6 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
 		})
 	}
 
-//
 	func test_load_deliversInvalidDataErrorOn200HTTPResponseWithPartiallyValidJSONItems() {
 		let (sut, client) = makeSUT()
 
@@ -87,7 +84,6 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
 		})
 	}
 
-//
 	func test_load_deliversSuccessWithNoItemsOn200HTTPResponseWithEmptyJSONList() {
 		let (sut, client) = makeSUT()
 
@@ -112,7 +108,6 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
 
 		let items = [item1.model, item2.model]
 
-		print("jic ==> ", items)
 		expect(sut, toCompleteWith: .success(items), when: {
 			let json = makeItemsJSON([item1.json, item2.json])
 			client.complete(withStatusCode: 200, data: json)
